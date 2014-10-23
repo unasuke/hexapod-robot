@@ -44,10 +44,10 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 // 値に設定します。この作業には微調整が必要になるかもしれません。
 
 // パルス幅最小値(4096以内)
-#define SERVOMIN  0 // this is the 'minimum' pulse length count (out of 4096)
+//#define SERVOMIN  0 // this is the 'minimum' pulse length count (out of 4096)
 
 // パルス幅最大値(4096以内)
-#define SERVOMAX  10 // this is the 'maximum' pulse length count (out of 4096)
+//#define SERVOMAX  20 // this is the 'maximum' pulse length count (out of 4096)
 
 // our servo # counter
 // サーボモータ数のカウント用変数
@@ -87,7 +87,23 @@ void loop() {
   // Drive each servo one at a time
   // 各サーボモータを1つずつ動かす
   Serial.println(servonum);
-  for (uint16_t pulselen = SERVOMIN; pulselen < SERVOMAX; pulselen++) {
+  for( int i = 0; i < 10; i++ ){
+    for( servonum = 0; servonum < 16; servonum++ ){
+    setServoPulse( servonum , 0.0010 );
+    }
+    delay(1000);
+
+    for( servonum = 0; servonum < 16; servonum++ ){
+    setServoPulse( servonum , 0.0015 );
+    }
+    delay(1000);
+
+    for( servonum = 0; servonum < 16; servonum++ ){
+    setServoPulse( servonum , 0.0020 );
+    }
+    delay(1000);
+  }
+  /*for (uint16_t pulselen = SERVOMIN; pulselen < SERVOMAX; pulselen++) {
     pwm.setPWM(servonum, 0, pulselen);
   }
   delay(500);
@@ -96,6 +112,6 @@ void loop() {
   }
   delay(500);
 
-  servonum ++;
-  if (servonum > 15) servonum = 0;
+  servonum ++;*/
+  //if (servonum > 15) servonum = 0;
 }
