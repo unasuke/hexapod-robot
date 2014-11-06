@@ -49,6 +49,10 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 // パルス幅最大値(4096以内)
 #define SERVOMAX  4096 // this is the 'maximum' pulse length count (out of 4096)
 
+//パルス幅の範囲(単位:sec)
+#define SERVO_PULSE_MIN_SEC 0.771
+#define SERVO_PULSE_MAX_SEC 2.193
+
 // our servo # counter
 // サーボモータ数のカウント用変数
 uint8_t servonum = 0;
