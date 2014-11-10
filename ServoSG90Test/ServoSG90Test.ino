@@ -1,35 +1,62 @@
+#include <Wire.h>
 #include <Servo.h>
+#include <Adafruit_PWMServoDriver.h>
 
-Servo sg90_1;
-Servo sg90_2;
-int position;
-int servopin1 = 9;
-int servopin2 = 10;
+//パルス幅の範囲(単位:sec)
+//0.771msのpulseで0°
+//2.193msのpulseで130°[要検証]
+#define SERVO_PULSE_MIN_SEC 0.771
+#define SERVO_PULSE_MAX_SEC 2.193
+
+//パルス幅の範囲(0から4096まで)
+#define SERVO_MIN 0
+#define SERVO_MAX 4096
+
+//入力された角度からパルス幅を求める
+double degree2Pulse( double degree ){
+  double oneDigreePulse = ( SERVO_PULSE_MAX_SEC - SERVO_PULSE_MIN_SEC ) / 130;
+  double pulse = ( degree * oneDigreePulse ) + SERVO_PULSE_MIN_SEC;
+  return pulse;
+}
+
+//Adafruitドライバの初期化
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+
+void setServoPulse(uint8_t n, double pulse) {
+  double pulselength;
+
+  pulselength = 1000000;   // 1,000,000 us per second
+  // 1秒は1000000マイクロ秒
+  pulselength /= 50;   // 60 Hz
+  Serial.print(pulselength); Serial.println(" us per period");
+  pulselength /= 4096;  // 12 bits of resolution
+  //分解能は12bit
+  Serial.print(pulselength); Serial.println(" us per bit");
+  pulse *= 1000;
+  pulse /= pulselength;
+  Serial.println(pulse);
+  pwm.setPWM(n, 0, pulse);
+}
 
 void setup(){
-  pinMode( servopin1 , OUTPUT );
-  pinMode( servopin2 , OUTPUT );
-  sg90_1.attach( servopin1 );
-  sg90_1.write(0);
-  sg90_2.attach( servopin2 );
-  sg90_2.write(0);
+
+  //Serial out
+  Serial.begin(9600);
+  Serial.println("Servo Pulse Test");
+
+  //Adafruit Driver Seting
+  pwm.begin();
+  pwm.setPWMFreq(50);
+
 }
 
 void loop(){
-  for( position = 0; position <= 180; position++ ){
-    //sg90_1.write( position );
-    sg90_2.write( position );
-    delay(5);
+  for( int i = 0; i <= 120; i+=5){
+    for( int j = 0; j < 4; j++ ){
+      setServoPulse( j , degree2Pulse( i ) );
+    }
+    delay(25);
+    if( i > 119.0 ) i = 0;
+    else;
   }
-  for( position = 180; position >= 0; position-- ){
-    //sg90_1.write( position );
-    sg90_2.write( position );
-    delay(5);
-  }
-  /*while(1){
-    sg90_1.write( 90 );
-    sg90_2.write( 90 );
-    delay(50);
-  }*/
-  delay(1000);
 }
