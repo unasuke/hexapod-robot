@@ -51,9 +51,12 @@ void setup(){
 }
 
 void loop(){
+  for( int i = 0; i < 16; i++ ){
+    setServoPulse( i , degree2Pulse( 0 /*i < 90?0:90*/ ) );
+  }
   for( int i = 0; i <= 120; i+=30){
-    for( int j = 0; j < 12; j++ ){
-      setServoPulse( j , degree2Pulse( 0/*i < 90?0:90*/ ) );
+    for( int j = 0; j < 16; j++ ){
+      setServoPulse( j , degree2Pulse( 0 /*i < 90?0:90*/ ) );
     }
     //delay(1);
     if( i > 119.0 ) i = 0;
