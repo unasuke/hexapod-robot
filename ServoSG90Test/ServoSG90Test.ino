@@ -10,7 +10,7 @@
 
 //サーボの可動範囲
 #define SERVO_MIN_DEGREE  0
-#define SERVO_MAX_DEGREE  120
+#define SERVO_MAX_DEGREE  130
 
 //パルス幅の範囲(0から4096まで)
 #define SERVO_MIN 0
@@ -18,7 +18,8 @@
 
 //入力された角度からパルス幅を求める
 double degree2Pulse( double degree ){
-  double oneDigreePulse = ( SERVO_PULSE_MAX_SEC - SERVO_PULSE_MIN_SEC ) / 130;
+  double oneDigreePulse = ( SERVO_PULSE_MAX_SEC - SERVO_PULSE_MIN_SEC )
+      / SERVO_MAX_DEGREE;
   double pulse = ( degree * oneDigreePulse ) + SERVO_PULSE_MIN_SEC;
   return pulse;
 }
@@ -31,7 +32,7 @@ void setServoPulse(uint8_t n, double pulse) {
 
   pulselength = 1000000;   // 1,000,000 us per second
   // 1秒は1000000マイクロ秒
-  pulselength /= 50;   // 60 Hz
+  pulselength /= 55;   // 60 Hz
   Serial.print(pulselength); Serial.println(" us per period");
   pulselength /= 4096;  // 12 bits of resolution
   //分解能は12bit
@@ -60,7 +61,7 @@ void loop(){
   }
   for( int i = 0; i <= 120; i+=30){
     for( int j = 0; j < 16; j++ ){
-      setServoPulse( j , degree2Pulse( 0 /*i < 90?0:90*/ ) );
+      setServoPulse( j , degree2Pulse( 90 /*i < 90?0:90*/ ) );
     }
     //delay(1);
     if( i > 119.0 ) i = 0;
