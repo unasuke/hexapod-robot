@@ -8,6 +8,10 @@
 #define SERVO_PULSE_MIN_SEC 0.771
 #define SERVO_PULSE_MAX_SEC 2.193
 
+//サーボの可動範囲
+#define SERVO_MIN_DEGREE  0
+#define SERVO_MAX_DEGREE  120
+
 //パルス幅の範囲(0から4096まで)
 #define SERVO_MIN 0
 #define SERVO_MAX 4096
