@@ -12,8 +12,22 @@ Hexapod servo placement
 
 #include <Wire.h>
 #include <Servo.h>
-#include <Adafruit_PWMServoDriver.h>
 
+Servo servoA;
+Servo servoB;
+Servo servoC;
+Servo servoD;
+Servo servoE;
+Servo servoF;
+Servo servoG;
+Servo servoH;
+Servo servoI;
+Servo servoJ;
+Servo servoK;
+Servo servoL;
+
+//#include <Adafruit_PWMServoDriver.h>
+/*
 //パルス幅の範囲(単位:sec) pulse width range
 //0.771msのpulseで0°
 //2.193msのpulseで130°[要検証]
@@ -40,16 +54,16 @@ Hexapod servo placement
 #define SERVO_I 8
 #define SERVO_J 9
 #define SERVO_K 10
-#define SERVO_L 11
+#define SERVO_L 11*/
 
 //入力された角度からパルス幅を求める
 //input degree to pulse
-double degree2Pulse( double degree ){
+/*double degree2Pulse( double degree ){
   double oneDigreePulse = ( SERVO_PULSE_MAX_SEC - SERVO_PULSE_MIN_SEC )
       / SERVO_MAX_DEGREE;
   double pulse = ( degree * oneDigreePulse ) + SERVO_PULSE_MIN_SEC;
   return pulse;
-}
+}*/
 
 //入力された角度を反転する
 //90°を反転の軸とする
@@ -81,9 +95,9 @@ double degreeReverse( double degree ){
 }
 
 //Adafruitドライバの初期化
-Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+//Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
-void setServoPulse(uint8_t n, double pulse) {
+/*void setServoPulse(uint8_t n, double pulse) {
   double pulselength;
 
   pulselength = 1000000;   // 1,000,000 us per second
@@ -97,30 +111,35 @@ void setServoPulse(uint8_t n, double pulse) {
   pulse /= pulselength;
   Serial.println(pulse);
   pwm.setPWM(n, 0, pulse);
-}
+}*/
 
-void setup(){
+void setup(void){
 
-  //Serial out
-  Serial.begin(9600);
-  Serial.println("Servo Pulse Test");
+  servoA.attach(22);
+  servoB.attach(24);
+  servoC.attach(26);
+  servoD.attach(28);
+  servoE.attach(30);
+  servoF.attach(32);
+  servoG.attach(34);
+  servoH.attach(36);
+  servoI.attach(38);
+  servoJ.attach(40);
+  servoK.attach(42);
+  servoL.attach(44);
 
-  //Adafruit Driver Seting
-  pwm.begin();
-  pwm.setPWMFreq(50);
-
-  //set default position
-  for( int i = 0; i < 16; i++ ){
-    setServoPulse( i , degree2Pulse(90) );
-  }
-
-  int tmp = 120;
-  setServoPulse( SERVO_A , degree2Pulse(tmp) );
-  setServoPulse( SERVO_C , degree2Pulse(tmp) );
-  setServoPulse( SERVO_E , degree2Pulse(tmp) );
-  setServoPulse( SERVO_G , degree2Pulse(tmp) );
-  setServoPulse( SERVO_I , degree2Pulse(tmp) );
-  setServoPulse( SERVO_K , degree2Pulse(tmp) );
+  servoA.write(90);
+  servoB.write(90);
+  servoC.write(90);
+  servoD.write(90);
+  servoE.write(90);
+  servoF.write(90);
+  servoG.write(90);
+  servoH.write(90);
+  servoI.write(90);
+  servoJ.write(90);
+  servoK.write(90);
+  servoL.write(90);
 
 }
 
@@ -129,6 +148,19 @@ void loop(){
   double degreetemp;
   double tmp;
   int delaysec = 1000;
+
+  servoA.write(90);
+  servoB.write(90);
+  servoC.write(90);
+  servoD.write(90);
+  servoE.write(90);
+  servoF.write(90);
+  servoG.write(90);
+  servoH.write(90);
+  servoI.write(90);
+  servoJ.write(90);
+  servoK.write(90);
+  servoL.write(90);
 
   /*degreetemp = degree2Pulse( 90 );
   for( int i = 0; ; i++ ){
@@ -144,61 +176,6 @@ void loop(){
   //////////////////////////////////
   //        walking             //
   ////////////////////////////////
-
-  //up front leg
-  /*tmp = 60;
-  setServoPulse( SERVO_A , degree2Pulse(tmp) );
-  setServoPulse( SERVO_K , degree2Pulse(tmp) );
-  delay(delaysec);*/
-  /*tmp = 120;
-  setServoPulse( SERVO_A , degree2Pulse(60) );
-  setServoPulse( SERVO_C , degree2Pulse(60) );
-  setServoPulse( SERVO_E , degree2Pulse(60) );
-  setServoPulse( SERVO_G , degree2Pulse(60) );
-  setServoPulse( SERVO_I , degree2Pulse(60) );
-  setServoPulse( SERVO_K , degree2Pulse(60) );
-  delay(delaysec);*/
-
-
-  tmp = 120;
-  setServoPulse( SERVO_A , degree2Pulse(60) );
-  setServoPulse( SERVO_B , degree2Pulse(tmp) );
-  delay(100);
-  setServoPulse( SERVO_K , degree2Pulse(60) );
-  setServoPulse( SERVO_L , degree2Pulse(degreeReverse(tmp)));
-  delay(100);
-  setServoPulse( SERVO_E , degree2Pulse(60) );
-  setServoPulse( SERVO_F , degree2Pulse(tmp) );
-  delay(100);
-  setServoPulse( SERVO_G , degree2Pulse(60) );
-  setServoPulse( SERVO_H , degree2Pulse(degreeReverse(tmp)));
-  delay(100);
-  setServoPulse( SERVO_C , degree2Pulse(60) );
-  setServoPulse( SERVO_D , degree2Pulse(tmp) );
-  delay(100);
-  setServoPulse( SERVO_I , degree2Pulse(60) );
-  setServoPulse( SERVO_J , degree2Pulse(degreeReverse(tmp)));
-  delay(100);
-
-  tmp = 90;
-  setServoPulse( SERVO_A , degree2Pulse(120) );
-  setServoPulse( SERVO_B , degree2Pulse(tmp) );
-  delay(100);
-  setServoPulse( SERVO_K , degree2Pulse(120) );
-  setServoPulse( SERVO_L , degree2Pulse(degreeReverse(tmp)));
-  delay(100);
-  setServoPulse( SERVO_E , degree2Pulse(120) );
-  setServoPulse( SERVO_F , degree2Pulse(tmp) );
-  delay(100);
-  setServoPulse( SERVO_G , degree2Pulse(120) );
-  setServoPulse( SERVO_H , degree2Pulse(degreeReverse(tmp)));
-  delay(100);
-  setServoPulse( SERVO_C , degree2Pulse(120) );
-  setServoPulse( SERVO_D , degree2Pulse(tmp) );
-  delay(100);
-  setServoPulse( SERVO_I , degree2Pulse(120) );
-  setServoPulse( SERVO_J , degree2Pulse(degreeReverse(tmp)));
-  delay(100);
 
   /*//up front leg
   tmp = 60;
