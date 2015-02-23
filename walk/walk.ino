@@ -10,7 +10,7 @@ Hexapod servo placement
     back
 */
 
-#include <Wire.h>
+//#include <Wire.h>
 #include <Servo.h>
 
 Servo servoA;
@@ -115,18 +115,18 @@ double degreeReverse( double degree ){
 
 void setup(void){
 
-  servoA.attach(22);
-  servoB.attach(24);
-  servoC.attach(26);
-  servoD.attach(28);
-  servoE.attach(30);
-  servoF.attach(32);
-  servoG.attach(34);
-  servoH.attach(36);
-  servoI.attach(38);
-  servoJ.attach(40);
-  servoK.attach(42);
-  servoL.attach(44);
+  servoA.attach(22 , 771 , 2739 );
+  servoB.attach(24 , 771 , 2739 );
+  servoC.attach(26 , 771 , 2739 );
+  servoD.attach(28 , 771 , 2739 );
+  servoE.attach(30 , 771 , 2739 );
+  servoF.attach(32 , 771 , 2739 );
+  servoG.attach(34 , 771 , 2739 );
+  servoH.attach(36 , 771 , 2739 );
+  servoI.attach(38 , 771 , 2739 );
+  servoJ.attach(40 , 771 , 2739 );
+  servoK.attach(42 , 771 , 2739 );
+  servoL.attach(44 , 771 , 2739 );
 
   servoA.write(90);
   servoB.write(90);
@@ -140,6 +140,7 @@ void setup(void){
   servoJ.write(90);
   servoK.write(90);
   servoL.write(90);
+  delay(1500);
 
 }
 
@@ -149,18 +150,37 @@ void loop(){
   double tmp;
   int delaysec = 1000;
 
-  servoA.write(90);
+  //servoA.write(90);
   servoB.write(90);
-  servoC.write(90);
+  //servoC.write(90);
   servoD.write(90);
-  servoE.write(90);
+  //servoE.write(90);
   servoF.write(90);
-  servoG.write(90);
+  //servoG.write(90);
   servoH.write(90);
-  servoI.write(90);
+  //servoI.write(90);
   servoJ.write(90);
-  servoK.write(90);
+  //servoK.write(90);
   servoL.write(90);
+
+  tmp = 120;
+  servoA.write(tmp);
+  servoC.write(tmp);
+  servoE.write(tmp);
+  servoG.write(tmp);
+  servoI.write(tmp);
+  servoK.write(tmp);
+
+
+  delay(1000);
+  tmp = 90;
+  servoA.write(tmp);
+  servoC.write(tmp);
+  servoE.write(tmp);
+  servoG.write(tmp);
+  servoI.write(tmp);
+  servoK.write(tmp);
+  delay(1000);
 
   /*degreetemp = degree2Pulse( 90 );
   for( int i = 0; ; i++ ){
