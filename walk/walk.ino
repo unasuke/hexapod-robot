@@ -128,19 +128,20 @@ void setup(void){
   servoK.attach(42 , 771 , 2739 );
   servoL.attach(44 , 771 , 2739 );
 
-  servoA.write(90);
   servoB.write(90);
-  servoC.write(90);
   servoD.write(90);
-  servoE.write(90);
   servoF.write(90);
-  servoG.write(90);
   servoH.write(90);
-  servoI.write(90);
   servoJ.write(90);
-  servoK.write(90);
   servoL.write(90);
-  delay(1500);
+
+  servoA.write(120);
+  servoC.write(120);
+  servoE.write(120);
+  servoG.write(120);
+  servoI.write(120);
+  servoK.write(120);
+  delay(500);
 
 }
 
@@ -148,20 +149,7 @@ void loop(){
 
   double degreetemp;
   double tmp;
-  int delaysec = 1000;
-
-  //servoA.write(90);
-  servoB.write(90);
-  //servoC.write(90);
-  servoD.write(90);
-  //servoE.write(90);
-  servoF.write(90);
-  //servoG.write(90);
-  servoH.write(90);
-  //servoI.write(90);
-  servoJ.write(90);
-  //servoK.write(90);
-  servoL.write(90);
+  int delaysec = 300;
 
   tmp = 120;
   servoA.write(tmp);
@@ -171,85 +159,83 @@ void loop(){
   servoI.write(tmp);
   servoK.write(tmp);
 
+  servoB.write(120);
+  servoL.write(120);
+  delay(delaysec);
 
-  delay(1000);
+
+  servoD.write(120);
+  servoJ.write(60);
+  delay(delaysec);
+
+  tmp = 120;
+  servoC.write(tmp);
+  servoI.write(tmp);
+  delay(delaysec);
+
+
+  servoD.write(60);
+  servoJ.write(120);
+  delay(delaysec);
+
+  tmp = 60;
+  servoC.write(tmp);
+  servoI.write(tmp);
+  delay(delaysec);
+
+
+
+  ///////   centipede style/////
+  /*
+  //up leg
   tmp = 90;
   servoA.write(tmp);
-  servoC.write(tmp);
   servoE.write(tmp);
-  servoG.write(tmp);
   servoI.write(tmp);
+  delay(delaysec);
+
+  //forward knee
+  tmp = 110;
+  servoB.write(tmp);
+  servoF.write(tmp);
+  servoJ.write(degreeReverse(tmp));
+  delay(delaysec);
+
+  //down leg
+  tmp = 120;
+  servoA.write(tmp);
+  servoE.write(tmp);
+  servoI.write(tmp);
+  delay(delaysec);
+
+  //up leg
+  tmp = 90;
+  servoC.write(tmp);
+  servoG.write(tmp);
   servoK.write(tmp);
-  delay(1000);
-
-  /*degreetemp = degree2Pulse( 90 );
-  for( int i = 0; ; i++ ){
-    setServoPulse( i , degreetemp );
-    if( i > 15 )  i = 0;
-  }*/
-
-  //set default position
-  /*for( int i = 0; i < 16; i++ ){
-    setServoPulse( i , degree2Pulse(90) );
-  }*/
-
-  //////////////////////////////////
-  //        walking             //
-  ////////////////////////////////
-
-  /*//up front leg
-  tmp = 60;
-  setServoPulse( SERVO_A , degree2Pulse(tmp) );
-  setServoPulse( SERVO_G , degree2Pulse(tmp) );
   delay(delaysec);
 
-  //forward front knee
-  tmp = 120;
-  setServoPulse( SERVO_B , degree2Pulse(tmp) );
-  setServoPulse( SERVO_H , degree2Pulse(degreeReverse(tmp)));
-  delay(delaysec);
-
-  //down front leg
+  //back knee
   tmp = 90;
-  setServoPulse( SERVO_A , degree2Pulse(tmp) );
-  setServoPulse( SERVO_G , degree2Pulse(tmp) );
+  servoB.write(tmp);
+  servoF.write(tmp);
+  servoJ.write(degreeReverse(tmp));
   delay(delaysec);
 
-  //up middle leg
-  tmp = 60;
-  setServoPulse( SERVO_C , degree2Pulse(tmp) );
-  setServoPulse( SERVO_I , degree2Pulse(tmp) );
+  //forward knee
+  tmp = 110;
+  servoH.write(degreeReverse(tmp));
+  servoL.write(degreeReverse(tmp));
+  servoD.write(tmp);
   delay(delaysec);
 
-  //forward middle knee
+  //down leg
   tmp = 120;
-  setServoPulse( SERVO_D , degree2Pulse(tmp) );
-  setServoPulse( SERVO_J , degree2Pulse(degreeReverse(tmp)));
+  servoC.write(tmp);
+  servoG.write(tmp);
+  servoK.write(tmp);
   delay(delaysec);
-
-  //down midle leg
-  tmp = 90;
-  setServoPulse( SERVO_C , degree2Pulse(tmp) );
-  setServoPulse( SERVO_I , degree2Pulse(tmp) );
-  delay(delaysec);
-
-  //up back leg
-  tmp = 60;
-  setServoPulse( SERVO_E , degree2Pulse(tmp) );
-  setServoPulse( SERVO_K , degree2Pulse(tmp) );
-  delay(delaysec);
-
-  //forward back knee
-  tmp = 120;
-  setServoPulse( SERVO_F , degree2Pulse(tmp) );
-  setServoPulse( SERVO_L , degree2Pulse(degreeReverse(tmp)));
-  delay(delaysec);
-
-  //down back leg
-  tmp = 90;
-  setServoPulse( SERVO_E , degree2Pulse(tmp) );
-  setServoPulse( SERVO_K , degree2Pulse(tmp) );
-  delay(delaysec);*/
-
+  */
+  ///////   centipede style end/////
 
 }
