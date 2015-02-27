@@ -128,12 +128,13 @@ void setup(void){
   servoK.attach(42 , 771 , 2739 );
   servoL.attach(44 , 771 , 2739 );
 
-  servoB.write(90);
+  //servoB.write(90);
+  servoB.write(120);
   servoD.write(90);
   servoF.write(90);
   servoH.write(90);
   servoJ.write(90);
-  servoL.write(90);
+  servoL.write(120);
 
   servoA.write(120);
   servoC.write(120);
@@ -141,46 +142,49 @@ void setup(void){
   servoG.write(120);
   servoI.write(120);
   servoK.write(120);
-  delay(500);
 
+  delay(500);
 }
 
 void loop(){
 
-  double degreetemp;
   double tmp;
   int delaysec = 300;
 
-  tmp = 120;
-  servoA.write(tmp);
-  servoC.write(tmp);
-  servoE.write(tmp);
-  servoG.write(tmp);
-  servoI.write(tmp);
-  servoK.write(tmp);
+  while(true){
 
-  servoB.write(120);
-  servoL.write(120);
-  delay(delaysec);
+    tmp = 60;
+    servoC.write(tmp);
+    servoI.write(tmp);
+    delay(delaysec);
 
+    tmp = 60;
+    servoD.write(degreeReverse(tmp+20));
+    servoJ.write(tmp);
+    delay(delaysec);
 
-  servoD.write(120);
-  servoJ.write(60);
-  delay(delaysec);
+    tmp = 120;
+    servoC.write(tmp);
+    servoI.write(tmp);
 
-  tmp = 120;
-  servoC.write(tmp);
-  servoI.write(tmp);
-  delay(delaysec);
+    tmp = 90;
+    servoA.write(tmp);
+    servoE.write(tmp);
+    servoG.write(tmp);
+    servoK.write(tmp);
+    delay(delaysec);
 
+    tmp = 120;
+    servoD.write(degreeReverse(tmp-20));
+    servoJ.write(tmp);
+    delay(delaysec);
 
-  servoD.write(60);
-  servoJ.write(120);
-  delay(delaysec);
-
-  tmp = 60;
-  servoC.write(tmp);
-  servoI.write(tmp);
-  delay(delaysec);
+    tmp = 120;
+    servoA.write(tmp);
+    servoE.write(tmp);
+    servoG.write(tmp);
+    servoK.write(tmp);
+    delay(delaysec);
+  }
 
 }
