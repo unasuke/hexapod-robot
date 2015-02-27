@@ -42,16 +42,17 @@ void setup(void){
 }
 
 void loop(){
-  servoA.write(90);
-  servoB.write(90);
-  servoC.write(90);
-  servoD.write(90);
-  servoE.write(90);
-  servoF.write(90);
-  servoG.write(90);
-  servoH.write(90);
-  servoI.write(90);
-  servoJ.write(90);
-  servoK.write(90);
-  servoL.write(90);
+  double tmp = 90;
+  servoA.write(tmp);
+  servoB.write(tmp);
+  servoC.write(tmp);
+  servoD.write(tmp);
+  servoE.write(tmp);
+  servoF.write(tmp);
+  servoG.write(tmp);
+  servoH.write(tmp);
+  servoI.write(tmp);
+  servoJ.write(tmp);
+  servoK.write(tmp);
+  servoL.write(tmp);
 }
