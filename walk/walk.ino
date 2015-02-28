@@ -149,51 +149,47 @@ void setup(void){
 void loop(){
 
   double tmp;
-  int delaysec = 400;
+  int delaysec = 250;
 
   while(true)
   {
-    //wave gait
-    servoA.write(30);
-    servoB.write(130);
-    delay(delaysec);
-    servoA.write(120);
-    servoB.write(120);
+    tmp = 60;
+    servoC.write(tmp);
+    //servoG.write(90);
+    servoI.write(tmp);
     delay(delaysec);
 
-    servoK.write(30);
-    servoL.write(70);
-    delay(delaysec);
-    servoK.write(120);
-    servoL.write(120);
-    delay(delaysec);
-
-    servoC.write(30);
-    servoD.write(110);
-    delay(delaysec);
-    servoC.write(120);
-    servoD.write(70);
+    tmp = 60;
+    servoB.write(degreeReverse(tmp+15));
+    servoD.write(degreeReverse(tmp+20));
+    servoJ.write(tmp);
+    servoH.write(tmp);
     delay(delaysec);
 
-    servoI.write(30);
-    servoJ.write(70);
-    delay(delaysec);
-    servoI.write(120);
-    servoJ.write(110);
+    tmp = 120;
+    servoC.write(tmp);
+    servoG.write(tmp);
+    servoI.write(tmp);
+
+    tmp = 90;
+    servoA.write(tmp);
+    servoE.write(tmp);
+    servoG.write(tmp);
+    servoK.write(tmp);
     delay(delaysec);
 
-    servoE.write(30);
-    servoF.write(110);
-    delay(delaysec);
-    servoE.write(120);
-    servoF.write(70);
+    tmp = 120;
+    servoB.write(degreeReverse(tmp-20));
+    servoD.write(degreeReverse(tmp-20));
+    servoJ.write(tmp);
+    servoH.write(tmp);
     delay(delaysec);
 
-    servoG.write(30);
-    servoH.write(70);
-    delay(delaysec);
-    servoG.write(120);
-    servoH.write(110);
+    tmp = 120;
+    servoA.write(tmp);
+    servoE.write(tmp);
+    servoG.write(tmp);
+    servoK.write(tmp);
     delay(delaysec);
 
 
