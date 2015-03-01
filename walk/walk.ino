@@ -143,7 +143,7 @@ void setup(void){
   servoI.write(120);
   servoK.write(120);
 
-  delay(500);
+  delay(2000);
 }
 
 void loop(){
